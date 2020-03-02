@@ -1,0 +1,24 @@
+@isTest
+public class P0BTest {
+
+    //test method name in method declaration below
+    
+    @isTest
+    public static void nFibonacciTest() {
+        
+        integer result = P0B.nFibonacci(0);
+        //system.assertEquals with () values tests 
+        //given against expected
+        
+            system.assertEquals(0,result);
+        	result = P0B.nFibonacci(1);
+        	system.assertEquals(1,result);
+            result = P0B.nFibonacci(2);
+            system.assertEquals(1,result);
+        	result =P0B.nFibonacci(10);
+            system.assertEquals(55,result);
+        
+    }
+        
+        
+}
