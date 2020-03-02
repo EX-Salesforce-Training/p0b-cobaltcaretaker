@@ -1,0 +1,179 @@
+public class P0B {
+
+    /*
+    Return the nth Fibonacci number
+    Test Cases:
+    Input: 0
+    Input: 1
+    Input: 2
+    Input: 10
+    Output: 0 
+    Output: 1
+    Output: 1 
+    Output: 55
+	*/
+    //Signature
+    public static Integer nFibonacci( Integer n ) {  
+   
+        integer firstNumber = 0;
+        integer secondNumber = 1;
+        integer placeHolder = 0;
+        
+        /* for as long as i <=n, do the following,
+           and increment 1 for each run of loop
+         */
+        
+        //If value of i is less than n-1, continue loop
+        //the 'IF' statement below means that if the condition 
+        //is true, execute conditions in 'FOR' block
+        
+        If (n != 0 && n != 1){  
+            for (Integer i = 1; i <n; i++) {
+                placeHolder = firstNumber + secondNumber;
+                firstNumber = secondNumber;
+                secondNumber = placeHolder;
+            	
+            
+        	}
+        }Else If(n == 1){
+            system.debug(placeHolder+1);
+                
+            return placeHolder+1;
+           
+        }
+        system.debug(placeHolder);
+        
+        return placeHolder;
+    }
+    
+    
+    
+    /*
+	Sort an array of integers.
+	Test Cases:
+	Input: [2,4,5,1,3,1] Output: [1,1,2,3,4,5]
+	Input: [5,4,3,2,1] Output: [1,2,3,4,5] *
+	Don't use the sort() method... that would be lame.
+	*/
+
+    //Logic... {1,3,8,2} must be sorted into logical numerical order
+    //when read left to right in the supplied array 
+    //To acheive this, 1) I want to compare first two integer values in list at, and determine which is numerically larger.  If 
+    //second integer value is smaller than first, swap them.  2) Then move to second and third integer value, compare, and swap
+    //as before. Repeat until entire list is in value ordered smallest to largest, then exit.
+    //
+    
+	public static Integer[] sortArray( Integer[] intList ) {
+    
+		List<Integer> tempList = new List<Integer>(intList);
+         
+        Integer n = tempList.size(); 
+        
+            for (Integer i = 0; i < n-1; i++) {
+                //*****Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
+                //need to find value of indexes.  To do this, find a method within the list class that will achieve this
+                //I found that get(index) is a method available to the List class - this is what I will use to identify values
+                //of indexes
+                //impliment in code below
+                
+                for (Integer j = 0; j < n-i-1; j++) {
+                 
+                    //If the condition below is true...
+                    //Variable j below can be utilized for both the loop step, as well as the list shift to the right with 
+                    //each pass...
+                    If(tempList.get(j) > tempList.get(j+1)){
+                    
+                        //Do this below to get and set (swapping) values using a temporary variable...
+                        Integer tempValue = tempList.get(j);
+                        
+                        //what index do I want to set the index 'value' to...
+                        //'Set' index 0 to the current value of index 1 using 'Get'...
+                        tempList.set(j, tempList.get(j+1));
+                        tempList.set(j+1, tempValue);
+                    }
+                        
+                    
+                    } 
+        }
+	
+    return tempList;
+    }
+    
+    /*
+
+    Return the factorial of n.
+    
+    Test Cases:
+    Input: 0	Output: 1 
+    Input: 1	Output: 1
+    Input: 3	Output: 6
+    
+    */
+    
+	public static Integer nFactorial( Integer n) {
+		
+		Integer result = 1;
+        
+        	For (Integer i=1;i<=n; i++){
+            
+            	result = result*i;
+            
+                    }
+       Return result; 
+	}
+    
+    /*
+    Rotate left
+    Given an array and an integer n, rotate the values in array left n times and return array
+	Test Cases:
+    Input: [1,2,3,4,5], 1
+	Input: [1,2,3,4,5], 6
+	Input: [1,2,3,4,5], 3
+	*/
+        //Integer n is number of times to rotate (run for loop) list
+        
+		public static Integer[] rotateLeftNTimes(Integer[] intList, Integer n) {
+		
+		
+        	//
+            for (Integer i = 0; i < n; i++)  {
+               
+                Integer tempVar = intList.get(0);
+                
+                	intList.remove(0);
+                    intList.add(tempVar);
+                
+                	
+                
+            
+            }
+            system.debug(intList);
+            return intList;
+        }
+    
+    
+     /*
+    * Balanced Brackets
+    * A bracket is any one of the following: (, ), {, }, [, or ] *
+    * The following are balanced brackets: 
+    * ()
+    * ()()
+    * (())
+    * ({[]})
+    *
+    * The following are NOT balanced brackets: *(
+    * )
+    * (()
+    * ([)]
+    *
+    * Return true if balanced
+    * Return false if not balanced
+    */
+    
+    public static Boolean bracketsAreBalanced( String s ) {
+    
+    
+    
+  
+    }
+}
