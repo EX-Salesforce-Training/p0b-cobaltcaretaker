@@ -1,4 +1,4 @@
-public class P0B {
+public class P0B{
 
     /*
     Return the nth Fibonacci number
@@ -46,23 +46,18 @@ public class P0B {
         return placeHolder;
     }
     
-    
-    
-    /*
-	Sort an array of integers.
-	Test Cases:
-	Input: [2,4,5,1,3,1] Output: [1,1,2,3,4,5]
-	Input: [5,4,3,2,1] Output: [1,2,3,4,5] *
-	Don't use the sort() method... that would be lame.
-	*/
-
-    //Logic... {1,3,8,2} must be sorted into logical numerical order
-    //when read left to right in the supplied array 
-    //To acheive this, 1) I want to compare first two integer values in list at, and determine which is numerically larger.  If 
-    //second integer value is smaller than first, swap them.  2) Then move to second and third integer value, compare, and swap
-    //as before. Repeat until entire list is in value ordered smallest to largest, then exit.
-    //
-    
+/*
+2. Sort an array of integers.
+Test Cases:
+Input: [2,4,5,1,3,1] Output: [1,1,2,3,4,5]
+Input: [5,4,3,2,1] Output: [1,2,3,4,5] *
+Don't use the sort() method... that would be lame.
+Logic... {1,3,8,2} must be sorted into logical numerical order
+when read left to right in the supplied array 
+To acheive this, 1) I want to compare first two integer values in list at, and determine which is numerically larger.  If 
+second integer value is smaller than first, swap them.  2) Then move to second and third integer value, compare, and swap
+as before. Repeat until entire list is in value ordered smallest to largest, then exit.
+*/
 	public static Integer[] sortArray( Integer[] intList ) {
     
 		List<Integer> tempList = new List<Integer>(intList);
@@ -99,16 +94,16 @@ public class P0B {
     return tempList;
     }
     
-    /*
+/*
 
-    Return the factorial of n.
+3. Return the factorial of n.
     
-    Test Cases:
-    Input: 0	Output: 1 
-    Input: 1	Output: 1
-    Input: 3	Output: 6
+Test Cases:
+Input: 0	Output: 1 
+Input: 1	Output: 1
+Input: 3	Output: 6
     
-    */
+*/
     
 	public static Integer nFactorial( Integer n) {
 		
@@ -122,14 +117,14 @@ public class P0B {
        Return result; 
 	}
     
-    /*
-    Rotate left
-    Given an array and an integer n, rotate the values in array left n times and return array
-	Test Cases:
-    Input: [1,2,3,4,5], 1
-	Input: [1,2,3,4,5], 6
-	Input: [1,2,3,4,5], 3
-	*/
+/*
+4. Rotate left
+Given an array and an integer n, rotate the values in array left n times and return array
+Test Cases:
+Input: [1,2,3,4,5], 1
+Input: [1,2,3,4,5], 6
+Input: [1,2,3,4,5], 3
+*/
         //Integer n is number of times to rotate (run for loop) list
         
 		public static Integer[] rotateLeftNTimes(Integer[] intList, Integer n) {
@@ -150,30 +145,164 @@ public class P0B {
             system.debug(intList);
             return intList;
         }
-    
-    
-     /*
-    * Balanced Brackets
-    * A bracket is any one of the following: (, ), {, }, [, or ] *
-    * The following are balanced brackets: 
-    * ()
-    * ()()
-    * (())
-    * ({[]})
-    *
-    * The following are NOT balanced brackets: *(
-    * )
-    * (()
-    * ([)]
-    *
-    * Return true if balanced
-    * Return false if not balanced
-    */
-    
-    public static Boolean bracketsAreBalanced( String s ) {
-    
-    
-    
+
+/*
+5. Balanced Brackets
+A bracket is any one of the following: (, ), {, }, [, or ] *
+The following are balanced brackets: *()
+()()
+(())
+({[]})
+
+The following are NOT balanced brackets: *(
+)
+(()
+Output: [2,3,4,5,1] Output: [2,3,4,5,1] Output: [4,5,1,2,3]
   
+([)]
+
+Return true if balanced
+Return false if not balanced
+*/
+    
+	public static Boolean bracketsAreBalanced( String s ){
+        
+        // if the only value in s is a space then its true.
+        if(s.equals(' ')) 
+        {
+            return true;
+        }
+        
+        // get rid of white space
+        s = s.replace(' ', ''); 
+        
+        // check to see if the length is a even number.
+        if(math.mod(s.length(),2) != 0) 
+        {
+            return false;
+        }
+        
+        // split string in half in order to compare one half to the other
+        integer halfLength = (s.length()/2);
+        String firstHalf = s.substring(0, halfLength); 
+        String secondHalf = s.substring(halfLength);
+        
+        if(firstHalf.equals(secondHalf))
+        {
+            return true;
+        }
+        
+        // reverse the second half and replace the closed bracket with and open version so it can be compared.
+        secondHalf = secondHalf.reverse();
+        secondHalf = secondHalf.replace(')','(' );
+        secondHalf = secondHalf.replace('}','{' );
+        secondHalf = secondHalf.replace(']','[' );
+        
+        if(firstHalf.equals(secondHalf))
+        {
+            return true;
+        }
+        else
+        {
+            return False;
+        }    
+    }    
+        
+/* You should NOT be submitting answers that you find online. You will be expected to be able to defend any of these solutions without notice. 
+
+6. Objective: Create a method that retrieves a list of all accounts and updates those accounts. 
+
+    1) Create a custom field on the Account standard object called Size__c that will be a picklist containing small/medium/large.
+
+        - If an account has between 1-1000 employees then it is classified as small.
+
+        - If an account has between 1001-10000 employees it is classified as medium. - If an account has more than 10000 employees it is classified
+
+    	as large.
+
+    2) Update the Size__c field on each account to reflect the amount of employees in the Account
+
+*/
+ 
+    public static void updateAccountSize( ) {
+
+        List<Account> retrievedList = [SELECT NumberOfEmployees, Size__c FROM Account];
+
+            For(Integer i=0; i<retrievedList.size(); i++) {
+
+                //BELOW: Saying, If...the account.field(meaning, NumberOfEmployees in retrievedList of Accounts), is greater than 1
+                //and less than 1000
+                //update retrievedList.Size__c
+
+                If(retrievedList[i].NumberOfEmployees >1 && retrievedList[i].NumberOfEmployees <=1000){
+
+                    retrievedList[i].Size__c = 'small';                    
+
+                }
+
+                If(retrievedList[i].NumberOfEmployees >1 && retrievedList[i].NumberOfEmployees <=1000) {
+
+                    retrievedList[i].Size__c = 'medium';
+
+                }
+
+                If(retrievedList[i].NumberOfEmployees <10001){
+
+                    retrievedList[i].Size__c = 'large';       
+			}
+       }
+        
+        update retrievedList;
+    } 
+    
+    
+/*
+7. Create a method that will find all leads that contain 'ca' in their fields.
+If a lead is located in California(CA), change their Lead Status field to 'Closed - Not Converted' and their description should
+display the message, "We are no longer doing business in California."
+*/
+
+    public static void updateCALeads( ) {
+
+        List<Lead> caLead = [SELECT State, Status, Description FROM Lead];
+        
+        	For(Integer i=0; i<caLead.size(); i++) {
+        
+                If(caLead[i].State == 'CA'){
+                    
+                    caLead[i].Status = 'Closed - Not Converted';
+                    caLead[i].Description = 'We are no longer doing business in California.';
+                    
+                }
     }
+
+    			update caLead;
 }
+
+    
+/*
+8. Create a method that will find all Opportunities which have already passed their Close Date
+and have a Stage field that is not 'Closed Won'. Since they have passed their Close Date and
+they are not marked as 'Closed Won', they should be marked as 'Closed Lost'.
+*/
+
+    public static void closePastDueOpportunities( ) {
+        
+        List<Opportunity> areOpportunities = [SELECT CloseDate, StageName FROM Opportunity];
+        
+        	For(Integer i=0; i<areOpportunities.size(); i++) {
+        
+                If(areOpportunities[i].CloseDate == system.today() && areOpportunities[i].StageName !='Closed Won'){
+                    
+                    areOpportunities[i].StageName = 'Closed Lost';
+                    
+    }
+
+                update areOpportunities;
+    
+    
+    
+		}
+    }
+
+}        
